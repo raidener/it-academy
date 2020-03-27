@@ -15,11 +15,5 @@ public class ForEach {
         for (int j: nums) {
             System.out.print(j+" ");
         }
-        System.out.println("Теперь выведем каждый второй элемент массива");
-        for (int j: nums) {
-            if (j % 2 != 0) {
-                System.out.print(j+" ");
-            }
-        }
     }
 }
