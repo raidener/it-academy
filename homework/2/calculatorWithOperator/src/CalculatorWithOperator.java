@@ -1,4 +1,4 @@
-public class CalculatorWithOperator {
+public class CalculatorWithOperator implements ICalculator {
     public double addition(double a, double b){
         double result=a+b;
         return result;
