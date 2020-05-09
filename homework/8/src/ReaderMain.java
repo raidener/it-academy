@@ -1,46 +1,49 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ReaderMain {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("students.bin"));
-
+    public static void main(String[] args)  {
         List<Student> listOfStudents = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("students.bin"));) {
 
-        while (true) {
-            try {
-                listOfStudents.add((Student) ois.readObject());
-            }
-            catch (EOFException e) {
-                break;
+            while (true) {
+                try {
+                    listOfStudents.add((Student) ois.readObject());
+                }
+                catch (EOFException e) {
+                    break;
+                }
             }
 
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
-        ois.close();
-
-        StudentsNameComparator comparator = new StudentsNameComparator();
-
-        listOfStudents.sort(comparator);
-
+        listOfStudents.sort(new StudentsNameComparator());
 
         for (Student list : listOfStudents) {
             System.out.println(list);
         }
 
 
-
-        File file = new File("SortedStudents.txt");
-        PrintWriter printWriter = new PrintWriter(file);
-
-        for (Student list : listOfStudents) {
-            printWriter.println(list);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("SortedStudentsFields.bin"))) {
+            for (Student list : listOfStudents) {
+                oos.writeUTF(list.getName());
+                oos.writeInt(list.getAge());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        printWriter.close();
 
+        try ( BufferedWriter writer = new BufferedWriter(new FileWriter("SortedStudents.txt"));) {
+            for (Student list : listOfStudents) {
+                writer.append(list.toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

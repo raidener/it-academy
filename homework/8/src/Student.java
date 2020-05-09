@@ -1,9 +1,9 @@
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+
 
 public class Student implements Serializable {
+
+    private static final long serialVersionUID = 1;
 
     private String name;
     private int age;
