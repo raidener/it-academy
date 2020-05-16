@@ -10,7 +10,7 @@ public class Main {
             arrayStrings.add(strings1[i]);
         }
 
-        EasySearch easySearch = new EasySearch();
+        ISearchEngine easySearch = new EasySearchRegex();
 
         System.out.println(easySearch.search(arrayStrings,"война"));
         System.out.println(easySearch.search(arrayStrings,"Война"));
