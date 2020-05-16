@@ -19,8 +19,8 @@ public class MapCreateAndSort {
     public static Map<String, Integer> sortMap(Map<String, Integer> map){
         Map<String, Integer> sortedMap = new LinkedHashMap<>();
             map.entrySet().stream()
-                .limit(10)
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .limit(10)
                 .forEach(e -> sortedMap.put(e.getKey(),e.getValue()));
         return sortedMap;
     }

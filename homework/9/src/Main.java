@@ -38,7 +38,7 @@ public class Main {
         Map<String, Integer> sortedmapOfDomen = MapCreateAndSort.sortMap(mapOfDomen);
         Map<String, Integer> sortedmapOfUpDomen = MapCreateAndSort.sortMap(mapOfUpDomen);
 
-        /*Выводим топ  протоколов*/
+        /*Выводим топ протоколов*/
         System.out.println("Топ протоколов :");
         for (Map.Entry<String, Integer> pair : sortedmapOfProtokol.entrySet())
         {
