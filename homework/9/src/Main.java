@@ -11,7 +11,7 @@ public class Main {
         List<String> listOfURL = Reader.reader("Benign_list_big_final.csv");
 
         /*Регулярное выражение для поиска URL*/
-        Pattern pattern = Pattern.compile("(http|https)://(.+?\\.([A-Za-z]*))/+.*");
+        Pattern pattern = Pattern.compile("^(http|https)://(\\w+\\.([a-z]{2,6}))/*.*$");
 
         /*Создаем листы для протоколов, доменов, доменов верхнего уровня*/
         List<String> protokol = new ArrayList<>();
